@@ -11,7 +11,7 @@ interface OrgRepoM {
 
 interface DisplayTypeM {
   displayType: 'issues' | 'comments';
-  issueId?: 'string' | null;
+  issueId?: number | null;
 }
 
 type CurrentDisplaySliceM = PageM & OrgRepoM & DisplayTypeM;
@@ -28,17 +28,17 @@ const slice = createSlice({
   name: 'issuesDisplay',
   initialState,
   reducers: {
-    setPage(state, action: PayloadAction<PageM>) {
+    actionSetPage(state, action: PayloadAction<PageM>) {
       const { page } = action.payload;
       state.page = page;
     },
-    setOrgRepo(state, action: PayloadAction<OrgRepoM>) {
+    actionSetOrgRepo(state, action: PayloadAction<OrgRepoM>) {
       const { org, repo } = action.payload;
 
       state.org = org;
       state.repo = repo;
     },
-    setDisplayType(state, action: PayloadAction<DisplayTypeM>) {
+    actionSetDisplayType(state, action: PayloadAction<DisplayTypeM>) {
       const { displayType, issueId = null } = action.payload;
 
       state.displayType = displayType;
@@ -47,6 +47,10 @@ const slice = createSlice({
   },
 });
 
-export const { setPage, setOrgRepo, setDisplayType } = slice.actions;
+export const {
+  actionSetPage,
+  actionSetOrgRepo,
+  actionSetDisplayType,
+} = slice.actions;
 
 export default slice.reducer;
