@@ -1,3 +1,4 @@
+
 import React from 'react';
 import './App.css';
 
@@ -41,6 +42,7 @@ const App: React.FC = () => {
   let content;
 
   if (displayType === 'issues') {
+
     content = (
       <React.Fragment>
         <RepoSearchForm
